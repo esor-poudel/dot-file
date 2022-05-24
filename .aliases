@@ -1,0 +1,219 @@
+
+# grep
+alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
+
+# using ripgrep instead of gnu grep
+# https://github.com/BurntSushi/ripgrep
+# alias grep=rg
+# alias cat=bat
+# alias time='hyperfine'
+alias ci='code-insiders'
+
+# ls
+# https://the.exa.website
+alias ls='exa --color=always --group-directories-first' # my preferred listing
+alias lsi='exa --color=always --icons --group-directories-first' # my preferred listing
+alias l='exa -F'
+alias ll='exa -lF'
+alias la='exa -aF'
+alias lla='exa -aFl'
+alias lg='exa -aFl --git'
+# alias la='exa -a --color=always --group-directories-first'  # all files and dirs
+alias ll='exa -l --color=always --group-directories-first'  # long format
+alias lt='exa -aT --color=always --group-directories-first --git-ignore' # tree listing
+alias llt='exa -TL 1 --color=always --group-directories-first --git-ignore' # tree listing
+
+
+## Dust
+alias dl='dust -rib 1'		# list files w.r.t to size, ignore hidden, depth=1
+
+# df hide tmpfs
+alias df='df -h -x tmpfs '
+
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv='mv -i'
+alias rm='rm -i'
+
+# copy content to clipboard
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
+# Easier navigation: .., ..., ...., ....., ~ and -
+alias ..="cd .."
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias ~="cd ~" # `cd` is probably faster to type though
+alias -- -="cd -"
+
+
+# Shortcuts for Direcory
+alias docs="cd ~/Documents"
+alias pics="cd ~/Pictures"
+alias h="cd $HOME"
+
+# Aliases
+# cp -Rv means:
+	# -R : copy directories recursively, every files from folder
+	# -v : Verbose output, show what's going under the hood
+alias cp='cp -Rv'
+
+alias mkdir='mkdir -pv'
+alias mv='mv -v'
+# resume getting a partially-downloaded file or start from beginning if not downloaded
+alias wget='wget -c'
+
+# ----------------------------------
+#		GIT ALIASES
+# ----------------------------------
+
+alias gadd='git add'
+alias gaa='git add --all'
+
+alias gb='git branch'
+alias gba='git branch -a'
+alias gbd='git branch -d'
+alias gbr='git branch --remote'
+
+alias gc='git commit -v'
+alias gcam='git commit -a -m'
+alias gcsm='git commit -s -m'
+
+alias gcom='git commit'
+alias gst='git status'
+alias gcb='git checkout -b'
+alias gcm='git checkout master'
+alias gco='git checkout'
+
+alias gd='git diff'
+
+alias glo='git log --oneline --decorate --color'
+alias glol='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
+
+alias gpush='git push'
+alias gpd='git push --dry-run'
+alias gpf='git push --force-with-lease'
+alias gpf!='git push --force'
+alias gpoat='git push origin --all && git push origin --tags'
+alias gpu='git push upstream'
+alias gpv='git push -v'
+
+alias gr='git remote'
+alias gra='git remote add'
+
+alias git-repostat='~/.shellrc.d/.git-rundown.sh'
+
+# ----------------------------------
+#	END GIT ALIASES
+# ----------------------------------
+
+# ----------------------------------
+#	Aliases for python
+# ----------------------------------
+
+
+alias py3='python3'
+alias pyhost="python3 -m http.server"
+alias pip='pip3'
+alias pym='python3 manage.py'
+alias stopenv='deactivate'
+
+# ----------------------------------
+#	End Aliases for python
+# ----------------------------------
+
+# ----------------------------------
+#	Few Tricks copied from
+#	our master @rhoit
+# ----------------------------------
+
+# cd work already done in the beginning
+# alias ..='cd ..'
+
+# diff
+alias diff='colordiff '
+
+# watch
+alias watch='watch --color '
+
+# Using sudo with alias
+alias sudo='sudo -E '
+
+# she know all (kinda from emacs)
+alias woman="man --apropos $1"
+
+# history
+alias hist='history | grep '
+
+# ----------------------------------
+#	End of the Tricks
+# ----------------------------------
+
+# Get week number
+alias week='date +%V'
+
+# Stopwatch
+alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
+
+# IP addresses
+alias pubip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\\.){3}[0-9]*' | grep -Eo '([0-9]*\\.){3}[0-9]*' | grep -v '127.0.0.1'"
+alias ips="ifconfig -a | grep -o 'inet6\\? \\(addr:\\)\\?\\s\\?\\(\\(\\([0-9]\\+\\.\\)\\{3\\}[0-9]\\+\\)\\|[a-fA-F0-9:]\\+\\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+
+# Flush Directory Service cache
+alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
+
+# View HTTP traffic
+alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
+alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\\: .*|GET \\/.*\""
+
+# # Canonical hex dump; some systems have this symlinked
+# command -v hd > /dev/null || alias hd="hexdump -C"
+
+# # OS X has no `md5sum`, so use `md5` as a fallback
+# command -v md5sum > /dev/null || alias md5sum="md5"
+
+# # OS X has no `sha1sum`, so use `shasum` as a fallback
+# command -v sha1sum > /dev/null || alias sha1sum="shasum"
+
+# Trim new lines and copy to clipboard
+alias c="tr -d '\\n' | xclip -selection clipboard"
+
+# URL-encode strings
+alias urlencode='python3 -c "import sys, urllib as ul; print(ul.quote_plus(sys.argv[1]));"'
+
+# Intuitive map function
+# For example, to list all directories that contain a certain file:
+# find . -name .gitattributes | map dirname
+alias map="xargs -n1"
+
+# One of @janmoesen’s ProTip™s
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+	# shellcheck disable=SC2139,SC2140
+	alias "$method"="lwp-request -m \"$method\""
+done
+
+# Kill all the tabs in Chrome to free up memory
+# Kill the Resource Hog : Giant
+# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
+alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
+
+# Lock the screen (when going AFK)
+# alias afk="i3lock -c 000000"
+alias afk="gnome-screensaver-command -l"
+
+# vhosts
+alias hosts='sudo nvim /etc/hosts'
+
+# copy working directory
+alias cwd='pwd | tr -d "\r\n" | xclip -selection clipboard'
+
+# untar
+alias untar='tar xvf'
+
+# Pipe my public key to my clipboard.
+alias pubkey="more ~/.ssh/id_ed25519.pub | xclip -selection clipboard | echo '=> Public key copied to pasteboard.'"
+
+# Pipe my private key to my clipboard.
+alias prikey="more ~/.ssh/id_ed25519 | xclip -selection clipboard | echo '=> Private key copied to pasteboard.'"

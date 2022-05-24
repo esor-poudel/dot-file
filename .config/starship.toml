@@ -1,0 +1,27 @@
+# Don't print a new line at the start of the prompt
+add_newline = true
+
+# Replace the "❯" symbol in the prompt with "➜"
+# [character]      # The name of the module we are configuring is "character"
+# symbol = "➜"     # The "symbol" segment is being set to "➜"
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+# Directory
+[directory]
+truncate_to_repo = true
+truncation_length = 4
+
+[dotnet]
+symbol = "🥅 "
+style = "blue"
+heuristic = true
+
+[git_branch]
+symbol = "🌱 "
+
+[java]
+style = "bold bright-red"
+
